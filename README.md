@@ -1,50 +1,90 @@
-# rate-crit
+# RateCrit
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Movies rated by real fans**
 
-Currently, two official plugins are available:
+**RateCrit** is a full-stack web application for browsing, rating, and reviewing movies. The project includes a Node.js Express backend and a Vite-powered React frontend.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Project Structure
 
-## Expanding the ESLint configuration
+/my-project /backend // Node.js Express backend /public // Vite public assets /src // Vite React source code .gitignore package.json // Vite frontend dependencies README.md tsconfig.json vite.config.ts
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+- **Frontend**: Built with React using Vite for fast development and optimized builds.
+- **Backend**: Node.js with Express, handling API requests and data processing.
+- **Movie Reviews**: View movie details, read overviews, check release dates, genres, and ratings.
+- **Smooth UI**: Responsive and clean design with smooth animations.
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Setup Instructions
+
+### Prerequisites
+
+- **Node.js**: Make sure you have Node.js installed on your machine.
+- **npm**: The package manager for Node.js (comes with Node.js).
+
+### Backend Setup
+
+1. Navigate to the `backend` folder:
+
+```bash
+cd backend
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+npm install
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
 ```
+
+3. Start the backend server:
+
+```bash
+npm run dev
+```
+
+The server should start and listen on the configured port.
+
+### Frontend Setup
+
+1. Go back to the project root, and install frontend dependencies:
+
+```bash
+cd ..
+npm install
+```
+
+2. Start the frontend (development mode):
+
+```bash
+npm run dev
+```
+
+The Vite development server should start, and you can view the application in your browser.
+
+### Usage
+
+1. Navigate to the frontend URL provided by Vite to start exploring the movies.
+2. Explore Movies: Browse through a variety of movies, check out their details, and read or leave reviews.
+3. Rate and Review: Log in to rate and review movies (future feature).
+
+## Environment Variables
+
+Make sure to create `.env` files in both the `backend` and `frontend` directories if your project requires environment-specific configurations. Example:
+
+- `backend/.env`
+- `frontend/.env`
+
+### License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more information.
+
+### Contributing
+
+Contributions are welcome! Feel free to fork the project and submit pull requests.
+
+### Contact
+
+- Author: Izik Filossof
+- Email: filossof@gmail.com
+- GitHub: https://github.com/filossof
