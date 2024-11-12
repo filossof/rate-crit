@@ -5,12 +5,9 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import {
   fetchPopularMovies,
-  fetchTopRatedMovies,
-  fetchNowPlayingMovies,
   fetchMoviesByGenre,
   fetchMoviesByQuery,
 } from "./http";
-import GenreSelect from "./components/GenreSelect";
 import { Movie } from "./types";
 import Topbar from "./components/Topbar";
 import MovieModal from "./components/MovieModal";
@@ -23,17 +20,17 @@ function App() {
   const [selectedMovie, setSelectedMovie] = useState<Movie>();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const [isFetching, setIsFetching] = useState(false);
+  // const [isFetching, setIsFetching] = useState(false);
   const [error, setError] = useState({ message: "" });
 
   useEffect(() => {
     async function fetchTopPopularMovies() {
-      setIsFetching(true);
+      // setIsFetching(true);
 
       try {
         const movies = await fetchPopularMovies();
         setMovies(movies);
-        setIsFetching(false);
+        // setIsFetching(false);
       } catch (error) {
         if (error instanceof Error) {
           setError({
@@ -45,7 +42,7 @@ function App() {
           setError({ message: "An unexpected error occurred." });
         }
 
-        setIsFetching(false);
+        // setIsFetching(false);
       }
     }
 
@@ -59,7 +56,7 @@ function App() {
           const movies = await fetchMoviesByGenre(selectedGenreId);
           setMovies(movies);
         }
-        setIsFetching(false);
+        // setIsFetching(false);
       } catch (error) {
         if (error instanceof Error) {
           setError({
@@ -71,7 +68,7 @@ function App() {
           setError({ message: "An unexpected error occurred." });
         }
 
-        setIsFetching(false);
+        // setIsFetching(false);
       }
     }
     fetchMoviesBySelectedGenre();
@@ -84,7 +81,7 @@ function App() {
           const movies = await fetchMoviesByQuery(searcheQuery);
           setMovies(movies);
         }
-        setIsFetching(false);
+        // setIsFetching(false);
       } catch (error) {
         if (error instanceof Error) {
           setError({
@@ -96,7 +93,7 @@ function App() {
           setError({ message: "An unexpected error occurred." });
         }
 
-        setIsFetching(false);
+        // setIsFetching(false);
       }
     }
     fetchMoviesBySearchQuery();
@@ -140,13 +137,14 @@ function App() {
 
   return (
     <>
-      <MovieModal
-        selectedMovie={selectedMovie}
-        open={modalIsOpen}
-        onClose={handleCloseModal}
-      >
-        This is my children node
-      </MovieModal>
+      {selectedMovie && (
+        <MovieModal
+          selectedMovie={selectedMovie}
+          open={modalIsOpen}
+          onClose={handleCloseModal}
+        />
+      )}
+
       <Topbar
         onSearch={handleSearch}
         onTabSelect={handleTabSelect}
@@ -154,29 +152,33 @@ function App() {
         onSelectGenre={(genreId) => handleGenreSelect(genreId)}
         genreId={selectedGenreId}
       />
-      {/* <Header /> */}
-      {/* <GenreSelect onSelect={handleGenreSelect} value={selectedGenreId} /> */}
+
       <h2>Most Popular Movies</h2>
-      <Movies>
-        {movies &&
-          movies
-            .slice(0, 12)
-            .map((movie: Movie) => (
-              <MovieCard
-                movieId={movie.id}
-                key={`${movie.title}_${movie.release_date}`}
-                title={movie.title}
-                imgSrc={`https://image.tmdb.org/t/p/original${movie.poster_path}.jpg`}
-                releaseDate={movie.release_date}
-                time={movie.time}
-                score={movie.vote_average}
-                overview={movie.overview}
-                genre={movie.genre}
-                onGenreClick={handleGenreSelect}
-                onMovieSelect={handleMovieSelect}
-              />
-            ))}
-      </Movies>
+      {error.message && (
+        <p>Error! Could not get movies. Please retry in a few seconds...</p>
+      )}
+      {!error.message && (
+        <Movies>
+          {movies &&
+            movies
+              .slice(0, 12)
+              .map((movie: Movie) => (
+                <MovieCard
+                  movieId={movie.id}
+                  key={`${movie.title}_${movie.release_date}`}
+                  title={movie.title}
+                  imgSrc={`https://image.tmdb.org/t/p/original${movie.poster_path}.jpg`}
+                  releaseDate={movie.release_date}
+                  time={movie.time}
+                  score={movie.vote_average}
+                  overview={movie.overview}
+                  genre={movie.genre}
+                  onGenreClick={handleGenreSelect}
+                  onMovieSelect={handleMovieSelect}
+                />
+              ))}
+        </Movies>
+      )}
     </>
   );
 }
