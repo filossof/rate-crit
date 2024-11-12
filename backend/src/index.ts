@@ -1,6 +1,6 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { Genre, Movie } from "../../src/types";
+import { Genre, Movie } from "./commonTypes";
 import path from "path";
 
 const GENRES = [
