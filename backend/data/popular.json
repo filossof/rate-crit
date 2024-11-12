@@ -1,0 +1,22 @@
+[
+  {
+    "title": "Dungeons & Dragons",
+    "image": {
+      "src": "https://image.tmdb.org/t/p/original/v7UF7ypAqjsFZFdjksjQ7IUpXdn.jpg",
+      "alt": "cover image"
+    },
+    "year": 2023,
+    "time": "2h14m",
+    "score": 7.2
+  },
+  {
+    "title": "Vivaldi - A prince in Venice",
+    "image": {
+      "src": "https://image.tmdb.org/t/p/original/uBSKJMIuaGv9XHGxHgjnjhIzpaU.jpg",
+      "alt": "cover image"
+    },
+    "year": 2006,
+    "time": "1h35m",
+    "score": 4.4
+  }
+]
