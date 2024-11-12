@@ -215,6 +215,11 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
+// Add a fallback to serve the favicon if needed
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public", "favicon.ico"));
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
