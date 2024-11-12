@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { Genre, Movie } from "../../src/types";
+import path from "path";
 
 const GENRES = [
   { id: 28, name: "Action" },
@@ -25,7 +26,7 @@ const GENRES = [
 ];
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const POPULAR_ENDPOINT =
   "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1";
@@ -204,6 +205,14 @@ app.use((req, res, next) => {
     return next();
   }
   res.status(404).json({ message: "404 - Not Found!" });
+});
+
+// Serve static files from the frontend's build folder
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Fallback route for handling client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../dist", "index.html"));
 });
 
 app.listen(port, () => {
