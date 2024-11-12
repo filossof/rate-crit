@@ -68,12 +68,12 @@ The Vite development server should start, and you can view the application in yo
 2. Explore Movies: Browse through a variety of movies, check out their details, and read or leave reviews.
 3. Rate and Review: Log in to rate and review movies (future feature).
 
-## Environment Variables
+<!-- ## Environment Variables
 
 Make sure to create `.env` files in both the `backend` and `frontend` directories if your project requires environment-specific configurations. Example:
 
 - `backend/.env`
-- `frontend/.env`
+- `frontend/.env` -->
 
 ### License
 
