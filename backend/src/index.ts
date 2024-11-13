@@ -43,6 +43,22 @@ const authorizationToken =
   "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0MzVkYjJmMzI2ZjhlYzkzNzE3ZjA2MjI1YTM3MTVjNyIsIm5iZiI6MTcyOTQxMjE4OC4wMjcwMDEsInN1YiI6IjY3MTRiNDc4MGNiNjI1MmY5OTA4YTQxYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DRQ85CjrJt0-kUyprHTQjFnzQHtguzNMztXiphuyg5E";
 
 app.use(express.static("images"));
+
+
+// Serve static files from the frontend's build folder
+app.use(express.static(path.join(__dirname, "../dist")));
+
+// Fallback route for handling client-side routing
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../../dist", "index.html"));
+});
+
+// Add a fallback to serve the favicon if needed
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public", "favicon.ico"));
+});
+
+
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
@@ -207,18 +223,7 @@ app.use((req, res, next) => {
   res.status(404).json({ message: "404 - Not Found!" });
 });
 
-// Serve static files from the frontend's build folder
-app.use(express.static(path.join(__dirname, "../dist")));
 
-// Fallback route for handling client-side routing
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../dist", "index.html"));
-});
-
-// Add a fallback to serve the favicon if needed
-app.get("/favicon.ico", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public", "favicon.ico"));
-});
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
