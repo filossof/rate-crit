@@ -1,6 +1,7 @@
-import process from "process";
+// import process from "process";
 
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
+const port = 3000;
 
 export async function fetchPopularMovies() {
   const response = await fetch(`http://localhost:${port}/popular-twenty`);
