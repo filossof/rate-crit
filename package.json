@@ -6,7 +6,9 @@
   "scripts": {
     "start": "node backend/dist/index.js",
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build-frontend && npm run build-backend",
+    "build-backend": "cd backend && npm run build",
+    "build-frontend": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "heroku-postbuild": "npm run build"
