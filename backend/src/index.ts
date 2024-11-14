@@ -47,10 +47,6 @@ app.use(express.static("images"));
 // Serve static files from the frontend's build folder
 app.use(express.static(path.join(__dirname, "../../dist")));
 
-
-
-
-
 // Add a fallback to serve the favicon if needed
 app.get("/favicon.ico", (req, res) => {
   res.sendFile(path.join(__dirname, "../public", "favicon.ico"));
@@ -91,6 +87,7 @@ function cleanUpMovies(movies: Movie[]) {
 }
 
 app.get("/popular-twenty", async (req, res) => {
+  console.log("YO YO YO IZIK!");
   try {
     const response = await fetch(POPULAR_ENDPOINT, {
       method: "GET",
