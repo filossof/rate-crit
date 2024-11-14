@@ -1,5 +1,5 @@
 const API_BASE_URL =
-  process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
+  import.meta.env.MODE === "production" ? "" : "http://localhost:3000";
 
 export async function fetchPopularMovies() {
   const response = await fetch(`${API_BASE_URL}/popular-twenty`);
