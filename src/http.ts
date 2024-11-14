@@ -1,10 +1,8 @@
-// import process from "process";
-
-// const port = process.env.PORT || 3000;
-//const port = 3000;
+const API_BASE_URL =
+  process.env.NODE_ENV === "production" ? "" : "http://localhost:3000";
 
 export async function fetchPopularMovies() {
-  const response = await fetch(`/popular-twenty`);
+  const response = await fetch(`${API_BASE_URL}/popular-twenty`);
   const resData = await response.json();
 
   if (!response.ok) {
@@ -15,7 +13,7 @@ export async function fetchPopularMovies() {
 }
 
 export async function fetchTopRatedMovies() {
-  const response = await fetch(`/top-rated`);
+  const response = await fetch(`${API_BASE_URL}/top-rated`);
   const resData = await response.json();
 
   if (!response.ok) {
@@ -26,7 +24,7 @@ export async function fetchTopRatedMovies() {
 }
 
 export async function fetchNowPlayingMovies() {
-  const response = await fetch(`/now-playing`);
+  const response = await fetch(`${API_BASE_URL}/now-playing`);
   const resData = await response.json();
 
   if (!response.ok) {
@@ -37,7 +35,7 @@ export async function fetchNowPlayingMovies() {
 }
 
 export async function fetchMoviesByGenre(genreId: number) {
-  const response = await fetch(`/genre?id=${genreId}`);
+  const response = await fetch(`${API_BASE_URL}/genre?id=${genreId}`);
   const resData = await response.json();
 
   if (!response.ok) {
@@ -48,9 +46,7 @@ export async function fetchMoviesByGenre(genreId: number) {
 }
 
 export async function fetchMoviesByQuery(searchQuery: string) {
-  const response = await fetch(
-    `/search?searchQuery=${searchQuery}`
-  );
+  const response = await fetch(`${API_BASE_URL}/search?searchQuery=${searchQuery}`);
   const resData = await response.json();
 
   if (!response.ok) {
