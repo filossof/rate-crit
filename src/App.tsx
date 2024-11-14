@@ -155,7 +155,10 @@ function App() {
 
       <h2>Most Popular Movies</h2>
       {error.message && (
-        <p>Error! Could not get movies. Please retry in a few seconds...</p>
+        <>
+          <p>Error! Could not get movies. Please retry in a few seconds...</p>
+          <p>{error.message}</p>
+        </>
       )}
       {!error.message && (
         <Movies>
